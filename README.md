@@ -68,3 +68,33 @@ The motivation was to build a reusable, robust, and parameterized UART that can 
     <td>RX FIFO depth</td>
   </tr>
 </table>
+
+h2>🔌 Interfaces (Top Module: uart_top.sv)</h2>
+
+<h3>Clocks & Reset</h3>
+<ul>
+  <li><b>clk_i</b> – Input clock</li>
+  <li><b>rst_ni</b> – Active-low reset</li>
+</ul>
+
+<h3>TX Host Side</h3>
+<ul>
+  <li><b>tx_data_i [7:0]</b> – Data input</li>
+  <li><b>tx_valid_i</b> – TX valid</li>
+  <li><b>tx_ready_o</b> – TX ready</li>
+  <li><b>tx_fifo_full_o</b> – TX FIFO full flag</li>
+</ul>
+
+<h3>RX Host Side</h3>
+<ul>
+  <li><b>rx_data_o [7:0]</b> – Data output</li>
+  <li><b>rx_valid_o</b> – RX valid</li>
+  <li><b>rx_ready_i</b> – RX ready</li>
+  <li><b>rx_fifo_empty_o</b> – RX FIFO empty flag</li>
+</ul>
+
+<h3>UART Pins</h3>
+<ul>
+  <li><b>uart_txo</b> – UART TX line output</li>
+  <li><b>uart_rxi</b> – UART RX line input</li>
+</ul>
