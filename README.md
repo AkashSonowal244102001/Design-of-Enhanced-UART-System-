@@ -11,7 +11,6 @@ The motivation was to build a reusable, robust, and parameterized UART that can 
 
 ⸻
 
-✨ Features
 	<h2>✨ Features</h2>
 <ul>
   <li>UART Transmitter (TX) and Receiver (RX)</li>
@@ -25,3 +24,47 @@ The motivation was to build a reusable, robust, and parameterized UART that can 
   <li>Constrained-random stimulus</li>
   <li>Corner-case coverage (underflow, overflow, simultaneous read/write)</li>
 </ul>
+
+<h2>⚙️ Parameters</h2>
+<table>
+  <tr>
+    <th>Parameter</th>
+    <th>Default</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>CLK_FREQ_HZ</td>
+    <td>50e6</td>
+    <td>Input clock frequency</td>
+  </tr>
+  <tr>
+    <td>BAUD_RATE</td>
+    <td>115200</td>
+    <td>UART baud rate</td>
+  </tr>
+  <tr>
+    <td>DATA_BITS</td>
+    <td>8</td>
+    <td>Number of data bits (7/8/9)</td>
+  </tr>
+  <tr>
+    <td>PARITY_MODE</td>
+    <td>0</td>
+    <td>0 = none, 1 = even, 2 = odd</td>
+  </tr>
+  <tr>
+    <td>STOP_BITS</td>
+    <td>1</td>
+    <td>Number of stop bits (1 or 2)</td>
+  </tr>
+  <tr>
+    <td>TX_FIFO_DEPTH</td>
+    <td>16</td>
+    <td>TX FIFO depth</td>
+  </tr>
+  <tr>
+    <td>RX_FIFO_DEPTH</td>
+    <td>16</td>
+    <td>RX FIFO depth</td>
+  </tr>
+</table>
