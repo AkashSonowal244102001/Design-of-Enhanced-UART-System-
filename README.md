@@ -12,13 +12,16 @@ The motivation was to build a reusable, robust, and parameterized UART that can 
 ⸻
 
 ✨ Features
-	 *UART Transmitter (TX) and Receiver (RX)
-	 *Baud Generator with configurable divisor
-	 *Parameterizable TX and RX FIFOs (synchronous)
-	  *FIFO full/empty/overflow logic with flags
-	-	Clean valid/ready-style streaming interface
-	-	Verification Environment
-	-	SystemVerilog Testbench
-	-	Scoreboard-based checking
-	-	Constrained-random stimulus
-	-	Corner-case coverage (underflow, overflow, simultaneous read/write)
+	<h2>✨ Features</h2>
+<ul>
+  <li>UART Transmitter (TX) and Receiver (RX)</li>
+  <li>Baud Generator with configurable divisor</li>
+  <li>Parameterizable TX and RX FIFOs (synchronous)</li>
+  <li>FIFO full/empty/overflow logic with flags</li>
+  <li>Clean valid/ready-style streaming interface</li>
+  <li>Verification Environment</li>
+  <li>SystemVerilog Testbench</li>
+  <li>Scoreboard-based checking</li>
+  <li>Constrained-random stimulus</li>
+  <li>Corner-case coverage (underflow, overflow, simultaneous read/write)</li>
+</ul>
