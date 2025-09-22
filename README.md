@@ -11,7 +11,7 @@ The motivation was to build a reusable, robust, and parameterized UART that can 
 
 ⸻
 
-	<h2>✨ Features</h2>
+<h2>✨ Features</h2>
 <ul>
   <li>UART Transmitter (TX) and Receiver (RX)</li>
   <li>Baud Generator with configurable divisor</li>
