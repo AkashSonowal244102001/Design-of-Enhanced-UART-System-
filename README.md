@@ -19,7 +19,7 @@ The motivation was to build a reusable, robust, and parameterized UART that can 
   <li>FIFO full/empty/overflow logic with flags</li>
   <li>Clean valid/ready-style streaming interface</li>
   <li>Verification Environment</li>
-  <li>SystemVerilog Testbench</li>
+  <li>Verilog Testbench</li>
   <li>Scoreboard-based checking</li>
   <li>Constrained-random stimulus</li>
   <li>Corner-case coverage (underflow, overflow, simultaneous read/write)</li>
@@ -98,3 +98,30 @@ The motivation was to build a reusable, robust, and parameterized UART that can 
   <li><b>uart_txo</b> – UART TX line output</li>
   <li><b>uart_rxi</b> – UART RX line input</li>
 </ul>
+
+<h2>🧪 Verification</h2>
+<ul>
+  <li><b>Scoreboard</b> – Ensures TX input sequence matches RX output sequence</li>
+  <li><b>Random Stimulus</b> – Stresses FIFOs and UART line with randomized data</li>
+  <li><b>Corner Case Tests</b> – Includes overflow, underflow, and simultaneous read/write scenarios</li>
+  <li><b>Assertions</b> – Protocol checks for FIFO read/write rules and UART frame structure</li>
+  <li><b>Functional Coverage</b> – 
+    <ul>
+      <li>Data pattern bins (00h, FFh, alternating, random)</li>
+      <li>Parity modes (none, even, odd)</li>
+      <li>Stop bits (1 or 2)</li>
+      <li>FIFO states (empty, full, transitions, simultaneous read/write)</li>
+      <li>Error injection coverage (framing errors, parity errors)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2>📊 Example Results</h2>
+<ul>
+  <li>✅ Smoke test passes with TX → RX loopback</li>
+  <li>✅ FIFO overflow and underflow correctly flagged in simulation</li>
+  <li>✅ Random stimulus achieves full functional coverage bins</li>
+  <li>✅ UART line verified for parity and stop-bit variations</li>
+</ul>
+
+<p><i>(Optional: Add waveform screenshot or coverage report image here)</i></p>
