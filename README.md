@@ -69,7 +69,7 @@ The motivation was to build a reusable, robust, and parameterized UART that can 
   </tr>
 </table>
 
-h2>🔌 Interfaces (Top Module: uart_top.sv)</h2>
+<h2>🔌 Interfaces (Top Module: uart_top.sv)</h2>
 
 <h3>Clocks & Reset</h3>
 <ul>
