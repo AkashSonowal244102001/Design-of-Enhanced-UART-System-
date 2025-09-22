@@ -24,7 +24,7 @@ The motivation was to build a reusable, robust, and parameterized UART that can 
   <li>Constrained-random stimulus</li>
   <li>Corner-case coverage (underflow, overflow, simultaneous read/write)</li>
 </ul>
-## 🏗️ Block Diagram
+ 🏗️ Block Diagram
 
 <p align="center">
   <img src="Project_Essentials/Block_Diagram.png" width="750" alt="UART IP Block Diagram">
