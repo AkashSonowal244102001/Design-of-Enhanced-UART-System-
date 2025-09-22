@@ -124,4 +124,4 @@ The motivation was to build a reusable, robust, and parameterized UART that can 
   <li>✅ UART line verified for parity and stop-bit variations</li>
 </ul>
 
-<p><i>(Optional: Add waveform screenshot or coverage report image here)</i></p>
+
