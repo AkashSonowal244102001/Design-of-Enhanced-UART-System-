@@ -25,100 +25,99 @@ The motivation was to build a reusable, robust, and parameterized UART that can 
   <li>Corner-case coverage (underflow, overflow, simultaneous read/write)</li>
 </ul>
 
-<!-- UART IP Block Diagram (inline SVG for GitHub README) -->
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-label="Enhanced UART IP Block Diagram">
-  <defs>
-    <marker id="arrow" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto">
-      <path d="M0,0 L10,4 L0,8 Z" fill="black"></path>
-    </marker>
-    <style>
-      .blk { fill:#f7f7f7; stroke:#000; stroke-width:1.2; rx:10; ry:10; }
-      .title { font: 700 14px sans-serif; }
-      .label { font: 12px sans-serif; }
-      .pin { font: 12px monospace; }
-      .wire { stroke:#000; stroke-width:1.2; fill:none; marker-end:url(#arrow); }
-      .dashed { stroke-dasharray:5 4; }
-    </style>
-  </defs>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420">
+  <!-- Title -->
+  <text x="480" y="26" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700">
+    Enhanced UART IP with FIFOs
+  </text>
 
-  <!-- Titles -->
-  <text x="480" y="24" text-anchor="middle" class="title">Enhanced UART IP with FIFOs & Verification</text>
+  <!-- Left labels -->
+  <text x="20" y="112" font-family="monospace" font-size="12">TX_HOST (tx_data_i, tx_valid_i, tx_ready_o)</text>
+  <text x="20" y="292" font-family="monospace" font-size="12">RX_HOST (rx_data_o, rx_valid_o, rx_ready_i)</text>
 
-  <!-- Left host interface labels -->
-  <text x="20" y="120" class="pin">TX_HOST (tx_data_i, tx_valid_i, tx_ready_o)</text>
-  <text x="20" y="300" class="pin">RX_HOST (rx_data_o, rx_valid_o, rx_ready_i)</text>
+  <!-- Boxes -->
+  <!-- TX path -->
+  <rect x="190" y="80" width="120" height="60" rx="8" ry="8" fill="#f7f7f7" stroke="#000"/>
+  <text x="250" y="115" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700">TX_IF</text>
 
-  <!-- TX path blocks -->
-  <rect x="190" y="80"  width="120" height="60" class="blk"></rect>
-  <text x="250" y="110" text-anchor="middle" class="title">TX_IF</text>
+  <rect x="340" y="80" width="140" height="60" rx="8" ry="8" fill="#f7f7f7" stroke="#000"/>
+  <text x="410" y="105" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700">TX_FIFO</text>
+  <text x="410" y="123" text-anchor="middle" font-family="sans-serif" font-size="12">depth=N, full/empty</text>
 
-  <rect x="340" y="80"  width="140" height="60" class="blk"></rect>
-  <text x="410" y="105" text-anchor="middle" class="title">TX_FIFO</text>
-  <text x="410" y="123" text-anchor="middle" class="label">depth=N, full/empty</text>
+  <rect x="520" y="80" width="130" height="60" rx="8" ry="8" fill="#f7f7f7" stroke="#000"/>
+  <text x="585" y="115" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700">UART_TX</text>
 
-  <rect x="520" y="80"  width="130" height="60" class="blk"></rect>
-  <text x="585" y="110" text-anchor="middle" class="title">UART_TX</text>
+  <rect x="680" y="80" width="120" height="60" rx="8" ry="8" fill="#f7f7f7" stroke="#000"/>
+  <text x="740" y="115" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700">TX Line</text>
 
-  <!-- TX line -->
-  <rect x="680" y="80" width="120" height="60" class="blk"></rect>
-  <text x="740" y="110" text-anchor="middle" class="title">TX Line</text>
+  <!-- RX path -->
+  <rect x="680" y="260" width="120" height="60" rx="8" ry="8" fill="#f7f7f7" stroke="#000"/>
+  <text x="740" y="295" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700">RX Line</text>
 
-  <!-- RX path blocks -->
-  <rect x="680" y="260" width="120" height="60" class="blk"></rect>
-  <text x="740" y="290" text-anchor="middle" class="title">RX Line</text>
+  <rect x="520" y="260" width="130" height="60" rx="8" ry="8" fill="#f7f7f7" stroke="#000"/>
+  <text x="585" y="295" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700">UART_RX</text>
 
-  <rect x="520" y="260" width="130" height="60" class="blk"></rect>
-  <text x="585" y="290" text-anchor="middle" class="title">UART_RX</text>
+  <rect x="340" y="260" width="140" height="60" rx="8" ry="8" fill="#f7f7f7" stroke="#000"/>
+  <text x="410" y="285" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700">RX_FIFO</text>
+  <text x="410" y="303" text-anchor="middle" font-family="sans-serif" font-size="12">depth=M, ovf/udf</text>
 
-  <rect x="340" y="260" width="140" height="60" class="blk"></rect>
-  <text x="410" y="285" text-anchor="middle" class="title">RX_FIFO</text>
-  <text x="410" y="303" text-anchor="middle" class="label">depth=M, ovf/udf</text>
+  <rect x="190" y="260" width="120" height="60" rx="8" ry="8" fill="#f7f7f7" stroke="#000"/>
+  <text x="250" y="295" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700">RX_IF</text>
 
-  <rect x="190" y="260" width="120" height="60" class="blk"></rect>
-  <text x="250" y="290" text-anchor="middle" class="title">RX_IF</text>
+  <!-- Center blocks -->
+  <rect x="520" y="170" width="130" height="60" rx="8" ry="8" fill="#f7f7f7" stroke="#000"/>
+  <text x="585" y="205" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700">Baud Gen</text>
 
-  <!-- Baud Generator and CLK/RST -->
-  <rect x="520" y="170" width="130" height="60" class="blk"></rect>
-  <text x="585" y="200" text-anchor="middle" class="title">Baud Gen</text>
+  <rect x="340" y="170" width="140" height="60" rx="8" ry="8" fill="#f7f7f7" stroke="#000"/>
+  <text x="410" y="195" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700">CLK / RST</text>
+  <text x="410" y="213" text-anchor="middle" font-family="sans-serif" font-size="12">clk_i, rst_ni</text>
 
-  <rect x="340" y="170" width="140" height="60" class="blk"></rect>
-  <text x="410" y="195" text-anchor="middle" class="title">CLK / RST</text>
-  <text x="410" y="213" text-anchor="middle" class="label">clk_i, rst_ni</text>
+  <!-- Wires (simple arrows using triangles) -->
+  <!-- Host -> TX_IF -->
+  <line x1="140" y1="110" x2="188" y2="110" stroke="#000" stroke-width="1.2"/>
+  <polygon points="188,110 180,106 180,114" fill="#000"/>
+  <!-- TX_IF -> TX_FIFO -->
+  <line x1="310" y1="110" x2="338" y2="110" stroke="#000" stroke-width="1.2"/>
+  <polygon points="338,110 330,106 330,114" fill="#000"/>
+  <!-- TX_FIFO -> UART_TX -->
+  <line x1="480" y1="110" x2="518" y2="110" stroke="#000" stroke-width="1.2"/>
+  <polygon points="518,110 510,106 510,114" fill="#000"/>
+  <!-- UART_TX -> TX Line -->
+  <line x1="650" y1="110" x2="678" y2="110" stroke="#000" stroke-width="1.2"/>
+  <polygon points="678,110 670,106 670,114" fill="#000"/>
 
-  <!-- Wires: host to TX_IF and RX_IF to host -->
-  <path class="wire" d="M140,110 L190,110"></path>
-  <path class="wire" d="M190,290 L140,290"></path>
+  <!-- RX Line -> UART_RX -->
+  <line x1="678" y1="290" x2="650" y2="290" stroke="#000" stroke-width="1.2"/>
+  <polygon points="678,290 670,286 670,294" fill="#000" transform="rotate(180 664 290)"/>
+  <!-- UART_RX -> RX_FIFO -->
+  <line x1="518" y1="290" x2="480" y2="290" stroke="#000" stroke-width="1.2"/>
+  <polygon points="480,290 488,286 488,294" fill="#000"/>
+  <!-- RX_FIFO -> RX_IF -->
+  <line x1="338" y1="290" x2="310" y2="290" stroke="#000" stroke-width="1.2"/>
+  <polygon points="310,290 318,286 318,294" fill="#000"/>
+  <!-- RX_IF -> Host -->
+  <line x1="188" y1="290" x2="140" y2="290" stroke="#000" stroke-width="1.2"/>
+  <polygon points="140,290 148,286 148,294" fill="#000"/>
 
-  <!-- TX pipeline wires -->
-  <path class="wire" d="M310,110 L340,110"></path>
-  <path class="wire" d="M480,110 L520,110"></path>
-  <path class="wire" d="M650,110 L680,110"></path>
+  <!-- Baud Gen to TX/RX -->
+  <line x1="585" y1="170" x2="585" y2="140" stroke="#000" stroke-width="1.2"/>
+  <polygon points="585,140 581,148 589,148" fill="#000"/>
+  <line x1="585" y1="230" x2="585" y2="260" stroke="#000" stroke-width="1.2"/>
+  <polygon points="585,260 581,252 589,252" fill="#000"/>
 
-  <!-- RX pipeline wires -->
-  <path class="wire" d="M680,290 L650,290"></path>
-  <path class="wire" d="M520,290 L480,290"></path>
-  <path class="wire" d="M340,290 L310,290"></path>
+  <!-- CLK/RST fanout -->
+  <line x1="480" y1="200" x2="520" y2="200" stroke="#000" stroke-width="1.2"/>
+  <line x1="410" y1="170" x2="410" y2="140" stroke="#000" stroke-width="1.2"/>
+  <line x1="410" y1="230" x2="410" y2="260" stroke="#000" stroke-width="1.2"/>
 
-  <!-- Serial crossover: TX Line -> RX Line (loopback for diagram) -->
-  <path class="wire dashed" d="M800,110 C860,110 860,290 800,290"></path>
-  <text x="865" y="205" class="label" transform="rotate(90 865 205)">serial</text>
-
-  <!-- Baud Gen connections to TX/RX (ticks) -->
-  <path class="wire" d="M585,170 L585,140"></path>
-  <path class="wire" d="M585,230 L585,260"></path>
-
-  <!-- CLK/RST to TX/RX/Baud (fanout) -->
-  <path class="wire" d="M480,200 L520,200"></path>
-  <path class="wire" d="M410,170 L410,140"></path>
-  <path class="wire" d="M410,230 L410,260"></path>
-
-  <!-- Side labels -->
-  <text x="95" y="105" text-anchor="end" class="label">TX host</text>
-  <text x="95" y="295" text-anchor="end" class="label">RX host</text>
-
-  <!-- Notes -->
-  <text x="250" y="360" text-anchor="middle" class="label">TX path: TX_IF → TX_FIFO → UART_TX → TX Line</text>
-  <text x="710" y="360" text-anchor="middle" class="label">RX path: RX Line → UART_RX → RX_FIFO → RX_IF</text>
+  <!-- Bottom notes -->
+  <text x="250" y="362" text-anchor="middle" font-family="sans-serif" font-size="12">
+    TX: TX_IF → TX_FIFO → UART_TX → TX Line
+  </text>
+  <text x="710" y="362" text-anchor="middle" font-family="sans-serif" font-size="12">
+    RX: RX Line → UART_RX → RX_FIFO → RX_IF
+  </text>
 </svg>
 <h2>⚙️ Parameters</h2>
 <table>
