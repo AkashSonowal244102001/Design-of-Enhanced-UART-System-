@@ -1,5 +1,5 @@
 # Design-of-Enhanced-UART-System-
-Configurable UART Transmitter (TX), Receiver (RX), and Baud Generator with parameterizable TX/RX FIFOs. Includes a Verilog verification environment with scoreboard, constrained-random stimulus, and corner-case coverage.
+Configurable UART Transmitter (TX), Receiver (RX), and Baud Generator with parameterizable TX/RX FIFOs. Includes a Verilog verification environment with  constrained-random stimulus, and corner-case coverage.
 
 ⸻
 
