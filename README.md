@@ -128,6 +128,11 @@ The motivation was to build a reusable, robust, and parameterized UART that can 
   <li>✅ UART line verified for parity and stop-bit variations</li>
 </ul>
 <p align="center">
-  <img src="Project_Essentials/Output.png" width="750" alt="UART IP Block Diagram">
+  <img src="Project_Essentials/Output_1.png" width="750" alt="UART IP Block Diagram">
 </p>
-
+<p align="center">
+  <img src="Project_Essentials/Output_2.png" width="750" alt="UART IP Block Diagram">
+</p>
+<p align="center">
+  <img src="Project_Essentials/Output_3.png" width="750" alt="UART IP Block Diagram">
+</p>
