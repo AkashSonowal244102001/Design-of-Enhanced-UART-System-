@@ -127,5 +127,7 @@ The motivation was to build a reusable, robust, and parameterized UART that can 
   <li>✅ Random stimulus achieves full functional coverage bins</li>
   <li>✅ UART line verified for parity and stop-bit variations</li>
 </ul>
-
+<p align="center">
+  <img src="Project_Essentials/Output.png" width="750" alt="UART IP Block Diagram">
+</p>
 
