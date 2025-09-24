@@ -1,0 +1,10 @@
+# show DUT + TB signals
+add_wave -r /tb_uart_top/*
+add_wave -r /tb_uart_top/dut/*
+
+# restart and run only what we need
+restart
+run 200 us
+
+# zoom to the useful window
+wave zoom range 0us 120us
